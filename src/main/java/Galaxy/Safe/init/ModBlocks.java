@@ -14,13 +14,12 @@ public class ModBlocks {
 	
 	public static void init() {
 		//One for each block
-		cheese = new BlockChest();
+		chest = new BlockChest();
 	}
 	
 	public static void register() {
 		//One for each block
-		registerBlock(cheese);
-		registerBlock(jar);
+		registerBlock(chest);
 	}
 	
 	private static void registerBlock(Block block) {
@@ -32,8 +31,7 @@ public class ModBlocks {
 	
 	public static void registerRenders() {
 		//One for each block
-		registerRender(cheese);
-		registerRender(jar);
+		registerRender(chest);
 	}
 	
 	private static void registerRender(Block block) {
