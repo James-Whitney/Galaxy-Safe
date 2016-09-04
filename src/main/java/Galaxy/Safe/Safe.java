@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 		name = Reference.NAME, 
 		version = Reference.VERSION, 
 		acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
+
 public class Safe {
 
 	@Instance
