@@ -1,5 +1,9 @@
 {
     "variants": {
         "normal": { "model": "galaxysafe:safe" }
+        "facing=north":  { "model": "galaxysafe:safe" },
+        "facing=south":  { "model": "galaxysafe:safe", "y": 180, "uvlock": false },
+        "facing=east": { "model": "galaxysafe:safe", "y": 90, "uvlock": false },
+        "facing=west": { "model": "galaxysafe:safe", "y": 270, "uvlock": false }
     }
 }
