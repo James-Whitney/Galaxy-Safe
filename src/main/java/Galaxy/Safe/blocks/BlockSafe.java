@@ -14,9 +14,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockSafe extends Block {
-																		 	//X1		Y1		Z1			X2			Y2			Z2	
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(	3/16.0,		0.0,	3/16.0,		13/16.0,	12/16.0,	13/16.0);
-	private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(	4/16.0,		0.0,	4/16.0,		12/16.0,	11/16.0,	12/16.0);
+//																		 	//X1		Y1			Z1			X2			Y2			Z2	
+//	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(	0/16.0,		0/16.0,		0/16.0,		16/16.0,	16/16.0,	16/16.0);
+//	private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(	0/16.0,		0/16.0,		0/16.0,		16/16.0,	16/16.0,	16/16.0);
 	
 	public BlockSafe() {
 		super(Material.WOOD);
@@ -33,12 +33,7 @@ public class BlockSafe extends Block {
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-	
-	//@Override
-	//public BlockRenderLayer getBlockLayer() {
-	//	return BlockRenderLayer.TRANSLUCENT;
-	//}
-	
+	/*
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return BOUNDING_BOX;
@@ -47,6 +42,6 @@ public class BlockSafe extends Block {
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn) {
 		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
-	}
+	}*/
 
 }
