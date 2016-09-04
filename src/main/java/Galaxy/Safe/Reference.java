@@ -10,14 +10,13 @@ public class Reference {
 	public static final String CLIENT_PROXY_CLASS = "Galaxy.Safe.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "Galaxy.Safe.proxy.ClientProxy";
 
-	/*
-	public static enum TutorialItems {
-		CHEESE("cheese", "ItemCheese"), CRACKER("cracker", "ItemCracker");
+	public static enum SafeItems {
+		Safe("safe", "ItemSafe");
 
 		private String unlocalizedName;
 		private String registryName;
 
-		TutorialItems(String unlocalizedName, String registryName) {
+		SafeItems(String unlocalizedName, String registryName) {
 			this.unlocalizedName = unlocalizedName;
 			this.registryName = registryName;
 		}
@@ -30,15 +29,14 @@ public class Reference {
 			return unlocalizedName;
 		}
 	}
-	*/
 	
-	public static enum TutorialBlocks {
+	public static enum SafeBlocks {
 		SAFE("safe", "BlockSafe");
 
 		private String unlocalizedName;
 		private String registryName;
 
-		TutorialBlocks(String unlocalizedName, String registryName) {
+		SafeBlocks(String unlocalizedName, String registryName) {
 			this.unlocalizedName = unlocalizedName;
 			this.registryName = registryName;
 		}

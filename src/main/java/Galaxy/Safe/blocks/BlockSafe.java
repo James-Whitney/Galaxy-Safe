@@ -8,8 +8,8 @@ public class BlockSafe extends Block {
 
 	public BlockSafe() {
 		super(Material.WOOD);
-		setUnlocalizedName(Reference.TutorialBlocks.SAFE.getUnlocalizedName());
-		setRegistryName(Reference.TutorialBlocks.SAFE.getRegistryName());
+		setUnlocalizedName(Reference.SafeBlocks.SAFE.getUnlocalizedName());
+		setRegistryName(Reference.SafeBlocks.SAFE.getRegistryName());
 	}
 
 }
