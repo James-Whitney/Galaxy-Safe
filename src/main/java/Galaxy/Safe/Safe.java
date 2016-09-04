@@ -1,5 +1,7 @@
 package Galaxy.Safe;
 
+import Galaxy.Safe.init.ModBlocks;
+import Galaxy.Safe.init.ModCrafting;
 import Galaxy.Safe.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -26,8 +28,8 @@ public class Safe {
 	public void preInit(FMLPreInitializationEvent event) {
 		System.out.println("Pre Init");
 
-		ModItems.init();
-		ModItems.register();
+		//ModItems.init();
+		//ModItems.register();
 		
 		ModBlocks.init();
 		ModBlocks.register();

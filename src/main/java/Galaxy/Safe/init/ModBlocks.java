@@ -1,5 +1,6 @@
 package Galaxy.Safe.init;
 
+import Galaxy.Safe.blocks.BlockSafe;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -10,16 +11,16 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModBlocks {
 	
 	//One for each block
-	public static Block chest;
+	public static Block safe;
 	
 	public static void init() {
 		//One for each block
-		chest = new BlockChest();
+		safe = new BlockSafe();
 	}
 	
 	public static void register() {
 		//One for each block
-		registerBlock(chest);
+		registerBlock(safe);
 	}
 	
 	private static void registerBlock(Block block) {
@@ -31,7 +32,7 @@ public class ModBlocks {
 	
 	public static void registerRenders() {
 		//One for each block
-		registerRender(chest);
+		registerRender(safe);
 	}
 	
 	private static void registerRender(Block block) {
