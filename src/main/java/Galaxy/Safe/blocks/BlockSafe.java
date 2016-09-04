@@ -8,7 +8,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -43,12 +45,18 @@ public class BlockSafe extends Block {
 		*/
 		
 	}
+	/***********************************/ // Rotate block on place
+	@Override
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		rotateBlock(worldIn,pos,facing);
+		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+	}
 	
-	
-	
-	
-	
-	
+	@Override
+	public boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {
+		return super.rotateBlock(world, pos, axis);
+	}
+	/**************************************/
 	@Override
 	public boolean isFullCube(IBlockState state){
 		return false;
