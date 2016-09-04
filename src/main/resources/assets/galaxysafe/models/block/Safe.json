@@ -4,18 +4,19 @@
         "0": "galaxysafe:blocks/safe_sides",
         "1": "galaxysafe:blocks/safe_front",
         "2": "galaxysafe:blocks/iron_block",
-        "3": "galaxysafe:blocks/turner"
+        "3": "galaxysafe:blocks/turner",
+        "particle": "galaxysafe:blocks/safe_sides"
     },
     "display": {
         "gui": {
-            "rotation": [ 30, 225, 0 ],
-            "translation": [ 0, 0, 0],
+            "rotation": [ 30, 315, 0 ],
+            "translation": [ 0, -1, 0],
             "scale":[ 0.6, 0.6, 0.6 ]
         },
         "ground": {
             "rotation": [ 0, 0, 0 ],
             "translation": [ 0, 3, 0],
-            "scale":[ 0.4, 0.4, 0.4 ]
+            "scale":[ 0.2, 0.2, 0.2 ]
         },
         "fixed": {
             "rotation": [ 0, 0, 0 ],
@@ -28,12 +29,12 @@
             "scale": [ 0.6, 0.6, 0.6 ]
         },
         "firstperson_righthand": {
-            "rotation": [ 0, 45, 0 ],
+            "rotation": [ 0, 315, 0 ],
             "translation": [ 0, 0, 0 ],
             "scale": [ 0.6, 0.6, 0.6 ]
         },
         "firstperson_lefthand": {
-            "rotation": [ 0, 225, 0 ],
+            "rotation": [ 0, 315, 0 ],
             "translation": [ 0, 0, 0 ],
             "scale": [ 0.6, 0.6, 0.6 ]
         }
