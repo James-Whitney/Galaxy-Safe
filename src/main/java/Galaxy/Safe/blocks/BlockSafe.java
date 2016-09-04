@@ -22,12 +22,11 @@ public class BlockSafe extends Block {
 	public BlockSafe() {
 		super(Material.WOOD);
 		setUnlocalizedName(Reference.SafeBlocks.SAFE.getUnlocalizedName());
-		//setUnlocalizedName("safe");
 		setRegistryName(Reference.SafeBlocks.SAFE.getRegistryName());
 		setCreativeTab(CreativeTabs.DECORATIONS);
 		setHardness(50.0F);
 		setResistance(2000.0F);
-		setHarvestLevel
+		setHarvestLevel("pickaxe", 2);
 		/*
 		setUnlocalizedName	required	sets the name of the block	 
 		setCreativeTab(	optional	sets the creative tab to display the block in	default: tabBlock
