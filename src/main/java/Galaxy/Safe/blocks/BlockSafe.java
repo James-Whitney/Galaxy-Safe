@@ -13,9 +13,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockSafe extends Block {
-
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(3/16.0 , 0.0, 3/16.0, 13/16.0, 12/16.0, 13/16.0);
-	private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(4/16.0 , 0.0, 4/16.0, 12/16.0, 11/16.0, 12/16.0);
+																		 	//X1		Y1		Z1			X2			Y2			Z2	
+	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(	3/16.0,		0.0,	3/16.0,		13/16.0,	12/16.0,	13/16.0);
+	private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(	4/16.0,		0.0,	4/16.0,		12/16.0,	11/16.0,	12/16.0);
 	
 	public BlockSafe() {
 		super(Material.WOOD);
