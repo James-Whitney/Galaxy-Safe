@@ -9,7 +9,8 @@ public class Reference {
 
 	public static final String CLIENT_PROXY_CLASS = "Galaxy.Safe.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "Galaxy.Safe.proxy.ClientProxy";
-
+	
+	/*
 	public static enum SafeItems {
 		SAFE("safe", "ItemSafe");
 
@@ -28,7 +29,7 @@ public class Reference {
 		public String getUnlocalizedName() {
 			return unlocalizedName;
 		}
-	}
+	}*/
 	
 	public static enum SafeBlocks {
 		SAFE("safe", "BlockSafe");
@@ -48,5 +49,6 @@ public class Reference {
 		public String getUnlocalizedName() {
 			return unlocalizedName;
 		}
+		
 	}
 }
