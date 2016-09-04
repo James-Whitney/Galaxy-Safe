@@ -11,7 +11,7 @@ public class Reference {
 	public static final String SERVER_PROXY_CLASS = "Galaxy.Safe.proxy.ClientProxy";
 
 	public static enum SafeItems {
-		Safe("safe", "ItemSafe");
+		SAFE("safe", "ItemSafe");
 
 		private String unlocalizedName;
 		private String registryName;
