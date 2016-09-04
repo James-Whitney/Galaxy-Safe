@@ -8,22 +8,22 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems {
 
-	public static Item cheese;
-	public static Item cracker;
+	//public static Item cheese;
+	//public static Item cracker;
 
 	public static void init() {
-		cheese = new ItemCheese();
-		cracker = new ItemCracker();
+		//cheese = new ItemCheese();
+		//cracker = new ItemCracker();
 	}
 
 	public static void register() {
-		GameRegistry.register(cheese);
-		GameRegistry.register(cracker);
+		//GameRegistry.register(cheese);
+		//GameRegistry.register(cracker);
 	}
 
 	public static void registerRenders() {
-		registerRender(cheese);
-		registerRender(cracker);
+		//registerRender(cheese);
+		//registerRender(cracker);
 	}
 
 	private static void registerRender(Item item) {
