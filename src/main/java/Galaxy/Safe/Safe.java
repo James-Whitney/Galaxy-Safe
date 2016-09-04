@@ -29,8 +29,8 @@ public class Safe {
 	public void preInit(FMLPreInitializationEvent event) {
 		System.out.println("Pre Init");
 
-		//ModItems.init();
-		//ModItems.register();
+		ModItems.init();
+		ModItems.register();
 		
 		ModBlocks.init();
 		ModBlocks.register();
