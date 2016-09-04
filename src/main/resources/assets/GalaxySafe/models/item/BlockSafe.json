@@ -1,5 +1,3 @@
 {
-    "parent": "block/cube_all",
-        "textures": {
-        "all": "galaxysafe:blocks/safe"
+    "parent": "block/cube_all"
 }
