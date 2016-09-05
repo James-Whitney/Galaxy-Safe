@@ -14,14 +14,18 @@ public class tileEntitySafe extends TileEntity implements ITickable {
 	
 	@Override
 	public void update() {
-		age++;
-		System.out.println("ITS WORKING! I'M "+age+" TICKS OLD!");
+		if (!this.worldObj.isRemote)
+		{
+			age++;
+			System.out.println("ITS WORKING! I'M "+age+" TICKS OLD!");
+		}
 	}
 	
 	@Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+    public void writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
-        compound.setInteger("age", this.age);
+        compound.setInteger("aInt", this.age);
+        
         /*//Primitives:
         compound.setBoolean("aBoolean", this.aBoolean);
         compound.setByte("aByte", this.aByte);
@@ -32,7 +36,8 @@ public class tileEntitySafe extends TileEntity implements ITickable {
         compound.setDouble("aDouble", this.aDouble);
         compound.setString("aString", this.aString);
         compound.setByteArray("aByteArray", this.aByteArray);
-        compound.setIntArray("anIntArray", this.anIntArray);
+        compound.set
+        IntArray("anIntArray", this.anIntArray);
 
         //Item Stack:
         NBTTagCompound stack = new NBTTagCompound();
@@ -48,7 +53,6 @@ public class tileEntitySafe extends TileEntity implements ITickable {
             list.appendTag(nbt);
         }
         compound.setTag("aList", list);*/
-		return compound;
     }
 
     @Override
