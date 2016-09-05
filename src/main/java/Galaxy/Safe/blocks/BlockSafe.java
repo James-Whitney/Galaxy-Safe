@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import Galaxy.Safe.Safe;
-import Galaxy.Safe.ModTileEntity;
+import Galaxy.Safe.tileEntities.tileEntitySafe;
 import Galaxy.Safe.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -60,7 +60,7 @@ public class BlockSafe extends BlockContainer {
 	}
 	/***** Tile Entity *****/
 		@Override
-	    public TileEntity createNewTileEntity(World worldIn, int meta) {return new ModTileEntity();}
+	    public TileEntity createNewTileEntity(World worldIn, int meta) {return new tileEntitySafe();}
 		@Override
 		public EnumBlockRenderType getRenderType(IBlockState state) {return EnumBlockRenderType.MODEL;}
 
