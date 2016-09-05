@@ -1,11 +1,12 @@
 package Galaxy.Safe;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ITickable;
 
-public class ModTileEntity extends TileEntity {//implements IUpdatePlayerListBox {
+public class ModTileEntity extends TileEntity implements ITickable {
 	
-	/*@Override
+	@Override
     public void update() {
         System.out.println("Hello, I'm a TileEntity!");
-    }*/
+    }
 }

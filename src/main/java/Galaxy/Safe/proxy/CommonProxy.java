@@ -19,6 +19,7 @@ public class CommonProxy {
 		ModBlocks.register();
 		
 		ModTileEntities.init();
+		ModTileEntities.register();
 	}
 
     public void init(FMLInitializationEvent e) {
