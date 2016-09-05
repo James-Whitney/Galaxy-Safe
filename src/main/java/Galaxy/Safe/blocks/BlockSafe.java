@@ -1,34 +1,47 @@
 package Galaxy.Safe.blocks;
 
 
+import java.util.Collection;
 import java.util.List;
+
+import Galaxy.Safe.Safe;
+import Galaxy.Safe.ModTileEntity;
 import Galaxy.Safe.Reference;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockSafe extends Block {
-																		 	//X1		Y1			Z1			X2			Y2			Z2	
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(	0/16.0,		0/16.0,		0/16.0,		16/16.0,	16/16.0,	15/16.0);
-	private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(	1/16.0,		0/16.0,		1/16.0,		15/16.0,	16/16.0,	15/16.0);
-	
+public class BlockSafe extends BlockContainer {
+																			//X1		Y1			Z1			X2			Y2			Z2	
+	//private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(	0/16.0,		0/16.0,		0/16.0,		16/16.0,	16/16.0,	15/16.0);
+	//private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(	1/16.0,		0/16.0,		1/16.0,		15/16.0,	16/16.0,	15/16.0);
+
 	public BlockSafe() {
-		super(Material.WOOD);
+		super(Material.IRON);
 		setUnlocalizedName(Reference.SafeBlocks.SAFE.getUnlocalizedName());
 		setRegistryName(Reference.SafeBlocks.SAFE.getRegistryName());
 		setCreativeTab(CreativeTabs.DECORATIONS);
 		setHardness(50.0F);
 		setResistance(2000.0F);
 		setHarvestLevel("pickaxe", 2);
+		//isBlockContainer = true;
 		/*
 		setUnlocalizedName	required	sets the name of the block	 
 		setCreativeTab(	optional	sets the creative tab to display the block in	default: tabBlock
@@ -45,36 +58,22 @@ public class BlockSafe extends Block {
 		*/
 		
 	}
-	/***********************************/ // Rotate block on place
-	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		rotateBlock(worldIn,pos,facing);
-		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-	}
+	/***** Tile Entity *****/
+		@Override
+	    public TileEntity createNewTileEntity(World worldIn, int meta) {return new ModTileEntity();}
+		@Override
+		public EnumBlockRenderType getRenderType(IBlockState state) {return EnumBlockRenderType.MODEL;}
+
+	/***** Modeling *****/
+	//@Override
+	//public boolean isFullCube(IBlockState state){return false;}
+	//@Override
+	//public boolean isOpaqueCube(IBlockState state) {return false;}
+	//@Override
+	//public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {return BOUNDING_BOX;}
+	//@Override
+	//public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn) {super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);}
+	/********************/
 	
-	@Override
-	public boolean rotateBlock(World world, BlockPos pos, EnumFacing axis) {
-		return super.rotateBlock(world, pos, axis);
-	}
-	/**************************************/
-	@Override
-	public boolean isFullCube(IBlockState state){
-		return false;
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return BOUNDING_BOX;
-	}
-	
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn) {
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
-	}
 
 }

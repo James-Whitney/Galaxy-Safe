@@ -1,8 +1,8 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "galaxysafe",
+  "name": "Galaxy's Safe",
+  "description": "Adds a person safe to minecraft, a block with a separate inventory for each player.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

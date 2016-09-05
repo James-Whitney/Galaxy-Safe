@@ -1,13 +1,24 @@
 package Galaxy.Safe.proxy;
 
-import Galaxy.Safe.init.ModBlocks;
-import Galaxy.Safe.init.ModItems;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class ClientProxy implements CommonProxy {
+public class ClientProxy extends CommonProxy {
 
-	public void init() {
-		ModItems.registerRenders();
-		ModBlocks.registerRenders();
-	}
+    @Override
+    public void preInit(FMLPreInitializationEvent e) {
+        super.preInit(e);
+    }
+
+    @Override
+    public void init(FMLInitializationEvent e) {
+        super.init(e);
+    }
+
+    @Override
+    public void postInit(FMLPostInitializationEvent e) {
+        super.postInit(e);
+    }
 
 }

@@ -1,8 +1,5 @@
 package Galaxy.Safe;
 
-import Galaxy.Safe.init.ModBlocks;
-import Galaxy.Safe.init.ModCrafting;
-import Galaxy.Safe.init.ModItems;
 import Galaxy.Safe.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -22,32 +19,15 @@ public class Safe {
 
 	@Instance
 	public static Safe instance;
-
+	
+	/********** Proxies **********/
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
-
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		System.out.println("Pre Init");
-
-		ModItems.init();
-		ModItems.register();
-		
-		ModBlocks.init();
-		ModBlocks.register();
-	}
-
+	public void preInit(FMLPreInitializationEvent e) { proxy.preInit(e);}
 	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		System.out.println("Init");
-		proxy.init();// Initialize by Forge not me
-		
-		ModCrafting.register(); //Initialize Crafting recipes.
-	}
-
+	public void init(FMLInitializationEvent e) {proxy.init(e);}
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
-		System.out.println("Post Init");
-	}
-
+	public void postInit(FMLPostInitializationEvent e) {proxy.postInit(e);}
+	/*****************************/
 }

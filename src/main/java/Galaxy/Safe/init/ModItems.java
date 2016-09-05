@@ -11,7 +11,7 @@ public class ModItems {
 	//public static Item cheese;
 	//public static Item cracker;
 
-	public static void init() {
+	public static final void init() {
 		//cheese = new ItemCheese();
 		//cracker = new ItemCracker();
 	}
