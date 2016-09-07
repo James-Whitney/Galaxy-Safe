@@ -23,10 +23,13 @@ public class Safe {
 	/********** Proxies **********/
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) { proxy.preInit(e);}
+	
 	@EventHandler
 	public void init(FMLInitializationEvent e) {proxy.init(e);}
+	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {proxy.postInit(e);}
 	/*****************************/
