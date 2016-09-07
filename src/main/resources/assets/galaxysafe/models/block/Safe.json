@@ -1,6 +1,9 @@
 {
-    "parent": "block/cube_all",
+    "parent": "block/orientable",
     "textures": {
-        "all": "galaxysafe:blocks/safe"
+        "top": "galaxysafe:blocks/safe",
+        "front": "galaxysafe:blocks/front_safe",
+        "side": "galaxysafe:blocks/safe",
+        "bottom": "galaxysafe:blocks/safe"
     }
 }
