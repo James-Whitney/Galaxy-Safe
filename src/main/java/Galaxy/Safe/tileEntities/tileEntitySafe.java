@@ -1,30 +1,27 @@
 package Galaxy.Safe.tileEntities;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
 
-public class tileEntitySafe extends TileEntity implements ITickable {
-
-	private int age;
+public class tileEntitySafe extends TileEntity implements IInventory {
 	
-	public tileEntitySafe () {
-		this.age = 0;
+	private ItemStack[] inventory;
+	private String customName;
+	
+	public tileEntitySafe() {
+		this.inventory = new ItemStack[this.getSizeInventory()];
 	}
 	
+	/********** Data storage **********/
 	@Override
-	public void update() {
-		if (!this.worldObj.isRemote)
-		{
-			age++;
-			System.out.println("ITS WORKING! I'M "+age+" TICKS OLD!");
-		}
-	}
-	
-	@Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
-        compound.setInteger("aInt", this.age);
+        
+        
+		return compound;
         
         /*//Primitives:
         compound.setBoolean("aBoolean", this.aBoolean);
@@ -58,7 +55,6 @@ public class tileEntitySafe extends TileEntity implements ITickable {
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        this.age = compound.getInteger("age");
 /*        //Primitives:
         this.aBoolean = compound.getBoolean("aBoolean");
         this.aByte = compound.getByte("aByte");
@@ -85,6 +81,101 @@ public class tileEntitySafe extends TileEntity implements ITickable {
             this.aList.set(id, value);
         }*/
     }
+
+    /********** IInventory **********/
+	@Override
+	public String getName() {return customName;}
+
+	@Override
+	public boolean hasCustomName() {
+		if(customName == null)
+			return false;
+		return true;
+	}
+
+	@Override
+	public int getSizeInventory() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ItemStack getStackInSlot(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ItemStack decrStackSize(int index, int count) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ItemStack removeStackFromSlot(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setInventorySlotContents(int index, ItemStack stack) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getInventoryStackLimit() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void openInventory(EntityPlayer player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void closeInventory(EntityPlayer player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isItemValidForSlot(int index, ItemStack stack) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getField(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getFieldCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
     
 	
 }
