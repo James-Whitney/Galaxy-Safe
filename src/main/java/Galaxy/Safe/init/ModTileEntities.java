@@ -14,6 +14,6 @@ public class ModTileEntities {
 	}
 	public static void register() {
 		//One for each tile Entity
-		GameRegistry.registerTileEntity(tileEntitySafe.class, "galaxysafe_safe_tile_entity");
+		GameRegistry.registerTileEntity(tileEntitySafe.class, "safe_tile_entity");
 	}
 }

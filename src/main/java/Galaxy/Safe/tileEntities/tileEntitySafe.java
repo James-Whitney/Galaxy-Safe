@@ -4,178 +4,152 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
 public class tileEntitySafe extends TileEntity implements IInventory {
 	
 	private ItemStack[] inventory;
-	private String customName;
+
 	
 	public tileEntitySafe() {
 		this.inventory = new ItemStack[this.getSizeInventory()];
 	}
 	
-	/********** Data storage **********/
+	/********** Data storage 
+	 * @return **********/
 	@Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        
-        
-		return compound;
-        
-        /*//Primitives:
-        compound.setBoolean("aBoolean", this.aBoolean);
-        compound.setByte("aByte", this.aByte);
-        compound.setShort("aShort", this.aShort);
-        compound.setInteger("anInt", this.anInt);
-        compound.setLong("aLong", this.aLong);
-        compound.setFloat("aFloat", this.aFloat);
-        compound.setDouble("aDouble", this.aDouble);
-        compound.setString("aString", this.aString);
-        compound.setByteArray("aByteArray", this.aByteArray);
-        compound.set
-        IntArray("anIntArray", this.anIntArray);
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+	    super.writeToNBT(nbt);
 
-        //Item Stack:
-        NBTTagCompound stack = new NBTTagCompound();
-        this.anItemStack.writeToNBT(stack);
-        compound.setTag("anItemStack", stack);
+	    NBTTagList list = new NBTTagList();
+	    for (int i = 0; i < this.getSizeInventory(); ++i) {
+	        if (this.getStackInSlot(i) != null) {
+	            NBTTagCompound stackTag = new NBTTagCompound();
+	            stackTag.setByte("Slot", (byte) i);
+	            this.getStackInSlot(i).writeToNBT(stackTag);
+	            list.appendTag(stackTag);
+	        }
+	    }
+	    nbt.setTag("Items", list);
 
-        //TagList of Integer Tags:
-        NBTTagList list = new NBTTagList();
-        for (int i = 0; i < this.aList.size(); i++) {
-            NBTTagCompound nbt = new NBTTagCompound();
-            nbt.setInteger("id", i);
-            nbt.setInteger("value", this.aList.get(i));
-            list.appendTag(nbt);
-        }
-        compound.setTag("aList", list);*/
-    }
+	    if (this.hasCustomName()) {
+	        nbt.setString("CustomName", this.getCustomName());
+	    }
+		return nbt;
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-/*        //Primitives:
-        this.aBoolean = compound.getBoolean("aBoolean");
-        this.aByte = compound.getByte("aByte");
-        this.aShort = compound.getShort("aShort");
-        this.anInt = compound.getInteger("anInt");
-        this.aLong = compound.getLong("aLong");
-        this.aFloat = compound.getFloat("aFloat");
-        this.aDouble = compound.getDouble("aDouble");
-        this.aString = compound.getString("aString");
-        this.aByteArray = compound.getByteArray("aByteArray");
-        this.anIntArray = compound.getIntArray("anIntArray");
 
-        //ItemStack:
-        this.anItemStack = ItemStack.loadItemStackFromNBT(compound.getCompoundTag("anItemStack"));
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+	    super.readFromNBT(nbt);
 
-        //TagList of Integer Tags:
-        NBTTagList list = compound.getTagList("aList", 10);
-        this.aList.clear();
-        for (int i = 0; i < list.tagCount(); i++) {
-            NBTTagCompound nbt = list.getCompoundTagAt(i);
-            int id = nbt.getInteger("id");
-            int value = nbt.getInteger("value");
-            this.aList.ensureCapacity(id);
-            this.aList.set(id, value);
-        }*/
-    }
+	    NBTTagList list = nbt.getTagList("Items", 10);
+	    for (int i = 0; i < list.tagCount(); ++i) {
+	        NBTTagCompound stackTag = list.getCompoundTagAt(i);
+	        int slot = stackTag.getByte("Slot") & 255;
+	        this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
+	    }
 
+	    if (nbt.hasKey("CustomName", 8)) {
+	        this.setCustomName(nbt.getString("CustomName"));
+	    }
+	}
     /********** IInventory **********/
+	private String customName;
+    
+    public String getCustomName() {return this.customName;}
+	public void setCustomName(String customName) {this.customName = customName;}
+	
 	@Override
-	public String getName() {return customName;}
-
+	public String getName() {return this.hasCustomName() ? this.customName : "container.safe_tile_entity";}
 	@Override
-	public boolean hasCustomName() {
-		if(customName == null)
-			return false;
-		return true;
-	}
-
+	public boolean hasCustomName() {return this.customName != null && !this.customName.equals("");}
+	/*
 	@Override
-	public int getSizeInventory() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	public IChatComponent getDisplayName() {
+	    return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatComponentTranslation(this.getName());
+	}*/
+	@Override
+	public int getSizeInventory() {return 9*4;} //Inventory size set here
+	
+	/********* standard implementation for inventory **********/
 	@Override
 	public ItemStack getStackInSlot(int index) {
-		// TODO Auto-generated method stub
-		return null;
+	    if (index < 0 || index >= this.getSizeInventory())
+	        return null;
+	    return this.inventory[index];
 	}
-
+	
 	@Override
 	public ItemStack decrStackSize(int index, int count) {
-		// TODO Auto-generated method stub
-		return null;
+	    if (this.getStackInSlot(index) != null) {
+	        ItemStack itemstack;
+
+	        if (this.getStackInSlot(index).stackSize <= count) {
+	            itemstack = this.getStackInSlot(index);
+	            this.setInventorySlotContents(index, null);
+	            this.markDirty();
+	            return itemstack;
+	        } else {
+	            itemstack = this.getStackInSlot(index).splitStack(count);
+
+	            if (this.getStackInSlot(index).stackSize <= 0) {
+	                this.setInventorySlotContents(index, null);
+	            } else {
+	                //Just to show that changes happened
+	                this.setInventorySlotContents(index, this.getStackInSlot(index));
+	            }
+
+	            this.markDirty();
+	            return itemstack;
+	        }
+	    } else {
+	        return null;
+	    }
 	}
 
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		ItemStack stack = this.getStackInSlot(index);
+	    this.setInventorySlotContents(index, null);
+	    return stack;
 	}
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
-		// TODO Auto-generated method stub
-		
-	}
+	    if (index < 0 || index >= this.getSizeInventory())
+	        return;
 
+	    if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+	        stack.stackSize = this.getInventoryStackLimit();
+	        
+	    if (stack != null && stack.stackSize == 0)
+	        stack = null;
+
+	    this.inventory[index] = stack;
+	    this.markDirty();
+	}
 	@Override
-	public int getInventoryStackLimit() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	public int getInventoryStackLimit() {return 64;}
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	public boolean isUseableByPlayer(EntityPlayer player) {return this.worldObj.getTileEntity(this.getPos()) == this && player.getDistanceSq(this.pos.add(0.5, 0.5, 0.5)) <= 64;}
 	@Override
-	public void openInventory(EntityPlayer player) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void openInventory(EntityPlayer player) {}
 	@Override
-	public void closeInventory(EntityPlayer player) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void closeInventory(EntityPlayer player) {}
 	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	public boolean isItemValidForSlot(int index, ItemStack stack) {return true;}
 	@Override
-	public int getField(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	public int getField(int id) {return 0;}
 	@Override
-	public void setField(int id, int value) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void setField(int id, int value) {}
 	@Override
-	public int getFieldCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	public int getFieldCount() {return 0;}
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
-    
+	    for (int i = 0; i < this.getSizeInventory(); i++)
+	        this.setInventorySlotContents(i, null);
+	} 
 	
 }

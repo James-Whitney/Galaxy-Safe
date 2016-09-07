@@ -18,6 +18,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -74,6 +75,18 @@ public class BlockSafe extends BlockContainer {
 	//@Override
 	//public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn) {super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);}
 	/********************/
-	
+		@Override
+		public void breakBlock(World world, BlockPos pos, IBlockState blockstate) {
+		    tileEntitySafe te = (tileEntitySafe) world.getTileEntity(pos);
+		    InventoryHelper.dropInventoryItems(world, pos, te);
+		    super.breakBlock(world, pos, blockstate);
+		}
+
+		@Override
+		public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		    if (stack.hasDisplayName()) {
+		        ((tileEntitySafe) worldIn.getTileEntity(pos)).setCustomName(stack.getDisplayName());
+		    }
+		}
 
 }
